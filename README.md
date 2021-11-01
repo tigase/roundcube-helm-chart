@@ -22,7 +22,7 @@ ingress:
   host: roundcube.your.domain
 
 imap:
-  host: imap.you.domain
+  host: imap.your.domain
 
 smtp:
   host: smtp.your.domain
