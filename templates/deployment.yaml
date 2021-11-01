@@ -81,6 +81,10 @@ spec:
                   key: dbPassword
             - name: ROUNDCUBEMAIL_DB_NAME
               value: "{{ .Values.externalDatabase.name }}"
+          volumeMounts:
+            - name: config
+              mountPath: /usr/local/etc/php/conf.d/zzz-custom.ini
+              subPath: php.ini
           ports:
             - containerPort: {{ .Values.deployment.port }}
           readinessProbe:
@@ -98,6 +102,10 @@ spec:
             periodSeconds: 3
             initialDelaySeconds: 5
             failureThreshold: 3
+      volumes:
+        - name: config
+          configMap:
+            name: {{ include "common.names.fullname" . }}
       {{- if .Values.deployment.affinity }}
       affinity: {{- include "common.tplvalues.render" (dict "value" .Values.deployment.affinity "context" $) | nindent 8 }}
       {{- else }}

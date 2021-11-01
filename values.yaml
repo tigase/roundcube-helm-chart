@@ -10,6 +10,11 @@ config:
   plugins: ""  # comma-separated list of additional plugins to be loaded
   uploadMaxFilesize: 25M
 
+  # Custom PHP configuration
+  php: |
+    ## Configure custom memory limit for PHP
+    # memory_limit=128M
+
 
 # Configuration for an external database (not deployed within this chart)
 externalDatabase:
@@ -67,6 +72,11 @@ smtp:
 
   # SMTP password (use "%p" tp use IMAP password)
   password: "%p"
+
+
+configMap:
+  additionalLabels: {}
+  additionalAnnotations: {}
 
 
 secret:
