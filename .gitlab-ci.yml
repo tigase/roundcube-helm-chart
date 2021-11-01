@@ -15,6 +15,7 @@ lint:
     entrypoint: [""]
   script:
     - helm version
+    - helm dependency update
     - helm lint .
 
 package:
