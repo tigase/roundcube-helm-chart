@@ -1,0 +1,6 @@
+---
+# https://github.com/roundcube/roundcubemail-docker/blob/master/README.md#configurationenvironment-variables
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:

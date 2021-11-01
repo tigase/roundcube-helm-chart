@@ -1,0 +1,76 @@
+
+# Roundcube Docker image
+image: roundcube/roundcubemail:1.4.x-apache
+imagePullPolicy: IfNotPresent
+
+config:
+  defaultLanguage: en_US
+  defaultSkin: larry
+  plugins: []
+  uploadMaxFilesize: 25M
+
+
+# Configuration for an external database (not deployed within this chart)
+externalDatabase:
+  # external database type. supported: mysql, pgsql, sqlite
+  type: pgsql
+  host:
+  port: 5432
+  name: roundcube
+  user: postgres
+  password: postgres
+
+# IMAP settings
+imap:
+  # hostname or IP address of IMAP server
+  host:
+
+  # IMAP port. Default ports depending on encryption setting:
+  #   143 - none, STARTTLS
+  #   993 - SSL/TLS (recommended)
+  port: 993
+
+  # Transport encryption. Please change port accordingly. Allowed values:
+  #   none     - no encryption
+  #   starttls - use STARTTLS
+  #   ssltls   - use SSL/TLS (recommended)
+  encryption: ssltls
+
+  # IMAP username
+  username:
+
+  # IMAP password
+  password:
+
+
+
+# SMTP settings
+smtp:
+  # hostname or IP address of SMTP server
+  host:
+
+  # SMTP port. Default ports depending on encryption setting:
+  #    25 - none
+  #   465 - SSL/TLS
+  #   587 - STARTTLS (recommended)
+  port: 465
+
+  # Transport encryption. Please change port accordingly. Allowed values:
+  #   none     - no encryption
+  #   starttls - use STARTTLS
+  #   ssltls   - use SSL/TLS (recommended)
+  encryption: ssltls
+
+  # SMTP username
+  username:
+
+  # SMTP password
+  password:
+
+deployment:
+  replicas: 2
+
+service:
+
+ingress:
+  host:

@@ -1,0 +1,26 @@
+apiVersion: v2
+name: roundcube
+description: Community Helm Chart for Roundcube
+version: 0.0.0
+appVersion: 1.4
+type: application
+
+sources:
+  - https://gitlab.com/MatthiasLohr/roundcube-helm-chart
+  - https://github.com/roundcube/roundcubemail-docker
+
+keywords:
+  - roundcube
+  - roundcubemail
+  - webmail
+
+maintainers:
+  - name: Matthias Lohr
+    email: mail@mlohr.com
+    url: https://mlohr.com/
+
+dependencies:
+  # https://github.com/bitnami/charts/tree/master/bitnami/common
+  - name: common
+    version: 1.10.0
+    repository: https://charts.bitnami.com/bitnami
