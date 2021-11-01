@@ -1,6 +1,6 @@
 # Changelog
 
-# v1.0.0
+# v1.1.0
 
   * Fixed roundcube version to `1.4.11`
   * Updated `NOTES.txt`
