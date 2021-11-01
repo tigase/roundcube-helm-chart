@@ -69,9 +69,17 @@ smtp:
   password: "%p"
 
 
+secret:
+  additionalLabels: {}
+  additionalAnnotations: {}
+
+
 deployment:
   replicas: 2
   port: 80
+
+  additionalLabels: {}
+  additionalAnnotations: {}
 
   podAffinityPreset: ""
   podAntiAffinityPreset: hard
@@ -81,14 +89,23 @@ deployment:
 service:
   port: 80
 
+  additionalLabels: {}
+  additionalAnnotations: {}
+
 
 ingress:
   host:
   path: "/"
   class: nginx
 
+  additionalLabels: {}
+  additionalAnnotations: {}
+
 
 pdb:
   enabled: true
   minAvailable: 1
   maxUnavailable: ""
+
+  additionalLabels: {}
+  additionalAnnotations: {}

@@ -5,7 +5,13 @@ metadata:
   name: {{ include "common.names.fullname" . }}
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
+    {{- if .Values.service.additionalLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.service.additionalLabels "context" $) | nindent 4 }}
+    {{- end }}
   annotations:
+    {{- if .Values.service.additionalAnnotations }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.service.additionalAnnotations "context" $) | nindent 4 }}
+    {{- end }}
 spec:
   selector:
     {{- include "common.labels.matchLabels" . | nindent 4 }}

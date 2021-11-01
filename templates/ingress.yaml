@@ -5,11 +5,17 @@ metadata:
   name: {{ include "common.names.fullname" . }}
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
+    {{- if .Values.ingress.additionalLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.ingress.additionalLabels "context" $) | nindent 4 }}
+    {{- end }}
   annotations:
     kubernetes.io/tls-acme: "true"
     kubernetes.io/ingress.class: {{ .Values.ingress.class }}
     nginx.ingress.kubernetes.io/affinity: "cookie"
     nginx.ingress.kubernetes.io/proxy-body-size: {{ .Values.config.uploadMaxFilesize }}
+    {{- if .Values.ingress.additionalAnnotations }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.ingress.additionalAnnotations "context" $) | nindent 4 }}
+    {{- end }}
 spec:
   rules:
     - host: {{ required "No ingress host defined" .Values.ingress.host }}

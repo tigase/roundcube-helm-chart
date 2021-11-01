@@ -6,6 +6,13 @@ metadata:
   name: {{ include "common.names.fullname" . }}
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
+    {{- if .Values.pdb.additionalLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.pdb.additionalLabels "context" $) | nindent 4 }}
+    {{- end }}
+  annotations:
+    {{- if .Values.pdb.additionalAnnotations }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.pdb.additionalAnnotations "context" $) | nindent 4 }}
+    {{- end }}
 spec:
   minAvailable: {{ .Values.pdb.minAvailable }}
   maxUnavailable: {{ .Values.pdb.maxUnavailable }}

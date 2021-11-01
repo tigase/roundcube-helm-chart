@@ -7,8 +7,14 @@ metadata:
   name: {{ include "common.names.fullname" . }}
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
+    {{- if .Values.deployment.additionalLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.deployment.additionalLabels "context" $) | nindent 4 }}
+    {{- end }}
   annotations:
     roundcube/config-checksum: {{ $configChecksum }}
+    {{- if .Values.deployment.additionalAnnotations }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.deployment.additionalAnnotations "context" $) | nindent 4 }}
+    {{- end }}
 spec:
   replicas: {{ .Values.deployment.replicas }}
   selector:
