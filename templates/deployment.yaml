@@ -90,6 +90,14 @@ spec:
             timeoutSeconds: 2
             periodSeconds: 3
             initialDelaySeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: {{ .Values.deployment.port }}
+            timeoutSeconds: 2
+            periodSeconds: 3
+            initialDelaySeconds: 5
+            failureThreshold: 3
       {{- if .Values.deployment.affinity }}
       affinity: {{- include "common.tplvalues.render" (dict "value" .Values.deployment.affinity "context" $) | nindent 8 }}
       {{- else }}
