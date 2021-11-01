@@ -4,9 +4,10 @@ image: roundcube/roundcubemail:1.4.x-apache
 imagePullPolicy: IfNotPresent
 
 config:
+  desKey:
   defaultLanguage: en_US
   defaultSkin: larry
-  plugins: []
+  plugins: ""  # comma-separated list of additional plugins to be loaded
   uploadMaxFilesize: 25M
 
 
@@ -19,6 +20,7 @@ externalDatabase:
   name: roundcube
   user: postgres
   password: postgres
+
 
 # IMAP settings
 imap:
@@ -43,7 +45,6 @@ imap:
   password:
 
 
-
 # SMTP settings
 smtp:
   # hostname or IP address of SMTP server
@@ -61,16 +62,23 @@ smtp:
   #   ssltls   - use SSL/TLS (recommended)
   encryption: ssltls
 
-  # SMTP username
-  username:
+  # SMTP username (use "%u" tp use IMAP username)
+  username: "%u"
 
-  # SMTP password
-  password:
+  # SMTP password (use "%p" tp use IMAP password)
+  password: "%p"
+
 
 deployment:
   replicas: 2
+  port: 80
+
 
 service:
+  port: 80
+
 
 ingress:
   host:
+  path: "/"
+  class: nginx

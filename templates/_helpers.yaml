@@ -1,0 +1,13 @@
+
+{{- define "roundcube.encryption" -}}
+{{- if not (has . (list "none" "starttls" "ssltls")) -}}
+{{ required (printf "invalid value for encryption: %s" .) nil -}}
+{{- else if  eq . "starttls" -}}
+tls://
+{{- else if  eq . "ssltls" -}}
+ssl://
+{{- end -}}
+{{- end -}}
+
+{{- define "roundcube.desKey" -}}
+{{- end -}}

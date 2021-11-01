@@ -1,0 +1,6 @@
+Congratulations!
+Your instance {{ include "common.names.fullname" . }} has successfully been installed!
+
+You can access roundcube now at
+
+  https://{{ .Values.ingress.host }}{{ .Values.ingress.path }}
