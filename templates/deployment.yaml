@@ -1,5 +1,6 @@
 ---
 # https://github.com/roundcube/roundcubemail-docker/blob/master/README.md#configurationenvironment-variables
+{{- $configChecksum := include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -7,6 +8,7 @@ metadata:
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
   annotations:
+    roundcube/config-checksum: {{ $configChecksum }}
 spec:
   replicas: {{ .Values.deployment.replicas }}
   selector:
@@ -17,6 +19,7 @@ spec:
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
       annotations:
+        roundcube/config-checksum: {{ $configChecksum }}
     spec:
       containers:
         - name: roundcubemail

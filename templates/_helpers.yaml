@@ -9,11 +9,16 @@ ssl://
 {{- end -}}
 {{- end -}}
 
+# inspired by https://stackoverflow.com/a/67523275/2400785
 {{- define "roundcube.desKey" -}}
-{{- $desKey := index (lookup "v1" "Secret" .Release.Namespace (include "common.names.fullname" . )).data "desKey" -}}
-{{- if $desKey -}}
-{{- $desKey -}}
+{{- if .Values.config.desKey }}
+{{- .Values.config.desKey -}}
 {{- else -}}
-{{- randAlphaNum 32 -}}
+{{- $lookupResult := (lookup "v1" "Secret" .Release.Namespace (include "common.names.fullname" . )).data -}}
+{{- if $lookupResult -}}
+{{- (index $lookupResult "desKey" | b64dec) | default (randAlphaNum 64) -}}
+{{- else -}}
+{{- randAlphaNum 64 -}}
+{{- end -}}
 {{- end -}}
 {{- end -}}
