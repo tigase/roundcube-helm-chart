@@ -4,6 +4,7 @@
 
   * Updated `NOTES.txt`
   * Allow for additional labels and annotations per Kubernetes resource
+  * Allow setting `ipFamilyPolicy` for service, defaults to `PreferDualStack`
 
 # v1.0.1
 

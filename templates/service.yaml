@@ -15,6 +15,7 @@ metadata:
 spec:
   selector:
     {{- include "common.labels.matchLabels" . | nindent 4 }}
+  ipFamilyPolicy: {{ .Values.service.ipFamilyPolicy }}
   ports:
     - name: http
       protocol: TCP

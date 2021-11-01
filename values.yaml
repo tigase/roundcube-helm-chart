@@ -92,6 +92,8 @@ service:
   additionalLabels: {}
   additionalAnnotations: {}
 
+  ipFamilyPolicy: PreferDualStack
+
 
 ingress:
   host:
