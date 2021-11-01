@@ -45,3 +45,5 @@ helm install roundcube mlohr/roundcube -f values.yaml
 
 ## Links
   * https://roundcube.net/
+  * https://github.com/roundcube/roundcubemail
+  * https://github.com/roundcube/roundcubemail-docker
