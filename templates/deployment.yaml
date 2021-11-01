@@ -77,3 +77,10 @@ spec:
               value: "{{ .Values.externalDatabase.name }}"
           ports:
             - containerPort: {{ .Values.deployment.port }}
+      {{- if .Values.deployment.affinity }}
+      affinity: {{- include "common.tplvalues.render" (dict "value" .Values.deployment.affinity "context" $) | nindent 8 }}
+      {{- else }}
+      affinity:
+        podAffinity: {{- include "common.affinities.pods" (dict "type" .Values.deployment.podAffinityPreset "context" $) | nindent 10 }}
+        podAntiAffinity: {{- include "common.affinities.pods" (dict "type" .Values.deployment.podAntiAffinityPreset "context" $) | nindent 10 }}
+      {{- end }}

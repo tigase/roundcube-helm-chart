@@ -73,6 +73,10 @@ deployment:
   replicas: 2
   port: 80
 
+  podAffinityPreset: ""
+  podAntiAffinityPreset: hard
+  affinity: {}
+
 
 service:
   port: 80
