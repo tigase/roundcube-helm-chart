@@ -2,7 +2,7 @@
 # https://github.com/roundcube/roundcubemail-docker/blob/master/README.md#configurationenvironment-variables
 {{- $configMapResourceChecksum := include (print $.Template.BasePath "/configmap.yaml") . | sha256sum -}}
 {{- $secretResourceChecksum := include (print $.Template.BasePath "/secret.yaml") . | sha256sum -}}
-{{- $configChecksum := printf "%s %s" $configMapResourceChecksum $secretResourceChecksum | sha256sum -}}
+{{- $configChecksum := printf "%s %s" $configMapResourceChecksum $secretResourceChecksum | sha256sum }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
