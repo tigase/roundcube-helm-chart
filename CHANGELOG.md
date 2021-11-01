@@ -5,6 +5,7 @@
   * Updated `NOTES.txt`
   * Allow for additional labels and annotations per Kubernetes resource
   * Allow setting `ipFamilyPolicy` for service, defaults to `PreferDualStack`
+  * Improved nginx session stickyness configuration
 
 # v1.0.1
 

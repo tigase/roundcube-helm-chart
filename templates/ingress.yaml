@@ -12,6 +12,8 @@ metadata:
     kubernetes.io/tls-acme: "true"
     kubernetes.io/ingress.class: {{ .Values.ingress.class }}
     nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/affinity-mode: "persistent"
+    nginx.ingress.kubernetes.io/session-cookie-name: "roundcube_sessaffinity"
     nginx.ingress.kubernetes.io/proxy-body-size: {{ .Values.config.uploadMaxFilesize }}
     {{- if .Values.ingress.additionalAnnotations }}
     {{- include "common.tplvalues.render" ( dict "value" .Values.ingress.additionalAnnotations "context" $) | nindent 4 }}
