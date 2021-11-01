@@ -10,4 +10,10 @@ ssl://
 {{- end -}}
 
 {{- define "roundcube.desKey" -}}
+{{- $desKey := index (lookup "v1" "Secret" .Release.Namespace (include "common.names.fullname" . )).data "desKey" -}}
+{{- if $desKey -}}
+{{- $desKey -}}
+{{- else -}}
+{{- randAlphaNum 32 -}}
+{{- end -}}
 {{- end -}}
