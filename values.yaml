@@ -82,3 +82,9 @@ ingress:
   host:
   path: "/"
   class: nginx
+
+
+pdb:
+  enabled: true
+  minAvailable: 1
+  maxUnavailable: ""
