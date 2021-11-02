@@ -89,6 +89,7 @@ spec:
               subPath: php.ini
           ports:
             - containerPort: {{ .Values.deployment.port }}
+              protocol: TCP
           readinessProbe:
             httpGet:
               path: /
