@@ -1,5 +1,9 @@
 # Changelog
 
+## unreleased
+
+  * Updated bitnami/common dependency to v1.10.1
+
 ## v1.2.0
 
   * Added NetworkPolicy
