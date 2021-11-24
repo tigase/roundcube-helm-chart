@@ -1,8 +1,11 @@
 # Changelog
 
-## unreleased
+## v1.2.0
 
   * Added NetworkPolicy
+  * Added support for custom roundcube configuration (e.g. plugins)
+  * Renamed `config.php` to `config.customPhpConfig`
+  * Improved plugin configuration
 
 ## v1.1.0
 

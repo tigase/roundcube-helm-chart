@@ -22,3 +22,15 @@ ssl://
 {{- end -}}
 {{- end -}}
 {{- end -}}
+
+{{- define "roundcube.pluginList" -}}
+{{- $pluginList := list -}}
+{{- range $plugin, $settings := .Values.config.plugins -}}
+{{- if $settings }}
+{{- if $settings.enabled -}}
+{{- $pluginList = append $pluginList $plugin -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
+{{- $pluginList | join "," -}}
+{{- end -}}

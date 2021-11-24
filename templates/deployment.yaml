@@ -60,7 +60,7 @@ spec:
             - name: ROUNDCUBEMAIL_LANGUAGE
               value: "{{ .Values.config.defaultLanguage }}"
             - name: ROUNDCUBEMAIL_PLUGINS
-              value: "{{ .Values.config.plugins }}"
+              value: "{{ include "roundcube.pluginList" . }}"
             - name: ROUNDCUBEMAIL_SKIN
               value: "{{ .Values.config.defaultSkin }}"
             - name: ROUNDCUBEMAIL_UPLOAD_MAX_FILESIZE
@@ -87,6 +87,9 @@ spec:
             - name: config
               mountPath: /usr/local/etc/php/conf.d/zzz-custom.ini
               subPath: php.ini
+            - name: config
+              mountPath: /var/roundcube/config/custom.php
+              subPath: roundcube.config.php
           ports:
             - containerPort: {{ .Values.deployment.port }}
               protocol: TCP

@@ -14,4 +14,15 @@ metadata:
     {{- end }}
 data:
   php.ini: |
-    {{- .Values.config.php | nindent 4 }}
+    {{- .Values.config.customPhpConfig | default "" | nindent 4 }}
+  roundcube.config.php: |
+    <?php
+    {{ range $plugin, $settings := .Values.config.plugins }}
+    // generated configuration for plugin {{ $plugin }}
+    {{- if $settings -}}{{- if $settings.enabled -}}{{- range $key, $value := $settings.config }}
+    $config['{{ $plugin }}_{{ $key }}'] = {{ if kindIs "string" $value }}{{ $value | quote }}{{ else }}{{ $value }}{{ end }};
+    {{- end -}}{{- end -}}{{- end }}
+    {{ end }}
+
+    // custom roundcube config
+    {{- .Values.config.customRoundcubeConfig | default "" | nindent 4 -}}

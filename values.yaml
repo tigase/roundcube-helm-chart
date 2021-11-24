@@ -7,11 +7,27 @@ config:
   desKey:
   defaultLanguage: en_US
   defaultSkin: larry
-  plugins: ""  # comma-separated list of additional plugins to be loaded
   uploadMaxFilesize: 25M
 
+  plugins:
+    managesieve:
+      enabled: false
+      config:
+        host: "%h"
+        port: 4190
+        useTls: true
+
   # Custom PHP configuration
-  php: |
+  customRoundcubeConfig: |
+    /*
+     * Custom Roundcube Configuration values
+     * Check https://github.com/roundcube/roundcubemail/wiki/Configuration for available options.
+     */
+
+    // $config['skin_logo'] = "";
+    // $config['support_url'] = "https://roundcube.net/";
+
+  customPhpConfig: |
     ## Configure custom memory limit for PHP
     # memory_limit=128M
 

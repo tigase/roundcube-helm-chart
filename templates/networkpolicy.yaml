@@ -28,12 +28,20 @@ spec:
             {{- .Values.networkPolicy.privateNetworks | toYaml | nindent 12 }}
             {{- end }}
       ports:
+        # SMTP
         - protocol: TCP
           port: {{ .Values.smtp.port }}
+        # IMAP
         - protocol: TCP
           port: {{ .Values.imap.port }}
+        # Database
         - protocol: TCP
           port: {{ .Values.externalDatabase.port }}
+        {{- if .Values.config.plugins.managesieve.enabled }}
+        # managesieve plugin
+        - protocol: TCP
+          port: {{ .Values.config.plugins.managesieve.config.port }}
+        {{- end }}
     - ports:
       - port: 53
         protocol: UDP
