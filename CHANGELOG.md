@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.3.1
+
+  * Do not add roundcube-logo.png to helm chart package (smaller package file size)
+
 ## v1.3.0
 
   * Updated bitnami/common dependency to v1.10.3

@@ -4,3 +4,4 @@
 /values.*.yaml
 /*.tgz
 /*.tgz.prov
+*.png
