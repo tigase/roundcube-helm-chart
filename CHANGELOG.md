@@ -1,8 +1,9 @@
 # Changelog
 
-## unreleased
+## v1.3.0
 
-  * Updated bitnami/common dependency to v1.10.1
+  * Updated bitnami/common dependency to v1.10.3
+  * Updated roundcube default image and chart version to v1.5.1
 
 ## v1.2.0
 

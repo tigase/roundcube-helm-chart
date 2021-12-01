@@ -1,6 +1,6 @@
 
 # Roundcube Docker image
-image: roundcube/roundcubemail:1.4.11-apache
+image: roundcube/roundcubemail:1.5.1-apache
 imagePullPolicy: IfNotPresent
 
 config:
