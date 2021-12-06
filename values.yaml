@@ -10,6 +10,7 @@ config:
   uploadMaxFilesize: 25M
 
   plugins:
+    # https://github.com/roundcube/roundcubemail/blob/master/plugins/managesieve/config.inc.php.dist
     managesieve:
       enabled: false
       config:
