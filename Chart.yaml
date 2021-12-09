@@ -9,6 +9,7 @@ type: application
 sources:
   - https://gitlab.com/MatthiasLohr/roundcube-helm-chart
   - https://github.com/roundcube/roundcubemail-docker
+  - https://github.com/roundcube/roundcubemail
 
 keywords:
   - roundcube
