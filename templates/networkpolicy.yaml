@@ -20,31 +20,37 @@ spec:
   policyTypes:
     - Egress
   egress:
+    # IMAP traffic
     - to:
-      - ipBlock:
-          cidr: 0.0.0.0/0
-          except:
-            {{- if .Values.networkPolicy.egress.blockPrivateNetworks }}
-            {{- .Values.networkPolicy.privateNetworks | toYaml | nindent 12 }}
-            {{- end }}
+        {{- .Values.networkPolicy.egress.imap.peers | toYaml | nindent 8 }}
       ports:
-        # SMTP
-        - protocol: TCP
-          port: {{ .Values.smtp.port }}
-        # IMAP
-        - protocol: TCP
-          port: {{ .Values.imap.port }}
-        # Database
-        - protocol: TCP
-          port: {{ .Values.externalDatabase.port }}
-        {{- if .Values.config.plugins.managesieve.enabled }}
-        # managesieve plugin
-        - protocol: TCP
-          port: {{ .Values.config.plugins.managesieve.config.port }}
-        {{- end }}
+        - port: {{ .Values.imap.port }}
+          protocol: TCP
+
+    # SMTP traffic
+    - to:
+        {{- .Values.networkPolicy.egress.smtp.peers | toYaml | nindent 8 }}
+      ports:
+        - port: {{ .Values.smtp.port }}
+          protocol: TCP
+
+    {{- if .Values.config.plugins.managesieve.enabled }}
+    # managesieve configuration
+    - to:
+        {{- .Values.networkPolicy.egress.managesieve.peers | toYaml | nindent 8 }}
+      ports:
+        - port: {{ .Values.config.plugins.managesieve.config.port }}
+          protocol: TCP
+    {{- end }}
+
+    # always allow DNS
     - ports:
-      - port: 53
-        protocol: UDP
-      - port: 53
-        protocol: TCP
+        - port: 53
+          protocol: UDP
+        - port: 53
+          protocol: TCP
+
+    {{- if .Values.networkPolicy.egress.additionalRules }}
+    {{- .Values.networkPolicy.egress.additionalRules | toYaml | nindent 4 }}
+    {{- end }}
 {{- end -}}

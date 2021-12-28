@@ -1,7 +1,9 @@
 # Changelog
 
-## v1.3.2
+## v1.4.0
 
+  * Improved `NetworkPolicy` configuration
+  * Disabled `NetworkPolicy` by default
   * Fixed: For `NetworkPolicy` resource, check `networkPolicy.enabled`, not `pdb.enabled`
 
 ## v1.3.1

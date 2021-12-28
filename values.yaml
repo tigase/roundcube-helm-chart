@@ -1,5 +1,5 @@
 
-# Roundcube Docker image
+## Roundcube Docker image
 image: roundcube/roundcubemail:1.5.1-apache
 imagePullPolicy: IfNotPresent
 
@@ -10,7 +10,7 @@ config:
   uploadMaxFilesize: 25M
 
   plugins:
-    # https://github.com/roundcube/roundcubemail/blob/master/plugins/managesieve/config.inc.php.dist
+    ## https://github.com/roundcube/roundcubemail/blob/master/plugins/managesieve/config.inc.php.dist
     managesieve:
       enabled: false
       config:
@@ -18,7 +18,7 @@ config:
         port: 4190
         useTls: true
 
-  # Custom PHP configuration
+  ## Custom PHP configuration
   customRoundcubeConfig: |
     /*
      * Custom Roundcube Configuration values
@@ -33,9 +33,10 @@ config:
     # memory_limit=128M
 
 
-# Configuration for an external database (not deployed within this chart)
+## Configuration for an external database (not deployed within this chart)
+## When working with a NetworkPolicy, add an egress rule to networkPolicy.egress.additionalRules to allow access to the database.
 externalDatabase:
-  # external database type. supported: mysql, pgsql, sqlite
+  ## external database type. supported: mysql, pgsql, sqlite
   type: pgsql
   host:
   port: 5432
@@ -44,50 +45,50 @@ externalDatabase:
   password: postgres
 
 
-# IMAP settings
+## IMAP settings
 imap:
-  # hostname or IP address of IMAP server
+  ## hostname or IP address of IMAP server
   host:
 
-  # IMAP port. Default ports depending on encryption setting:
-  #   143 - none, STARTTLS
-  #   993 - SSL/TLS (recommended)
+  ## IMAP port. Default ports depending on encryption setting:
+  ##   143 - none, STARTTLS
+  ##   993 - SSL/TLS (recommended)
   port: 993
 
-  # Transport encryption. Please change port accordingly. Allowed values:
-  #   none     - no encryption
-  #   starttls - use STARTTLS
-  #   ssltls   - use SSL/TLS (recommended)
+  ## Transport encryption. Please change port accordingly. Allowed values:
+  ##   none     - no encryption
+  ##   starttls - use STARTTLS
+  ##   ssltls   - use SSL/TLS (recommended)
   encryption: ssltls
 
-  # IMAP username
+  ## IMAP username
   username:
 
-  # IMAP password
+  ## IMAP password
   password:
 
 
-# SMTP settings
+## SMTP settings
 smtp:
-  # hostname or IP address of SMTP server
+  ## hostname or IP address of SMTP server
   host:
 
-  # SMTP port. Default ports depending on encryption setting:
-  #    25 - none
-  #   465 - SSL/TLS
-  #   587 - STARTTLS (recommended)
+  ## SMTP port. Default ports depending on encryption setting:
+  ##    25 - none
+  ##   465 - SSL/TLS
+  ##   587 - STARTTLS (recommended)
   port: 465
 
-  # Transport encryption. Please change port accordingly. Allowed values:
-  #   none     - no encryption
-  #   starttls - use STARTTLS
-  #   ssltls   - use SSL/TLS (recommended)
+  ## Transport encryption. Please change port accordingly. Allowed values:
+  ##   none     - no encryption
+  ##   starttls - use STARTTLS
+  ##   ssltls   - use SSL/TLS (recommended)
   encryption: ssltls
 
-  # SMTP username (use "%u" tp use IMAP username)
+  ## SMTP username (use "%u" tp use IMAP username)
   username: "%u"
 
-  # SMTP password (use "%p" tp use IMAP password)
+  ## SMTP password (use "%p" tp use IMAP password)
   password: "%p"
 
 
@@ -140,16 +141,58 @@ pdb:
   additionalAnnotations: {}
 
 
+## A NetworkPolicy can prevent unauthorized access to remote hosts on network level.
+## By default, if enabled, the NetworkPolicy allows to connect to any IP with the IMAP and SMTP ports configured above.
+## This also applies for the managesieve plugin, if enabled.
+## More information on network policies: https://kubernetes.io/docs/concepts/services-networking/network-policies/
 networkPolicy:
-  enabled: true
 
-  privateNetworks:
-    - 10.0.0.0/8
-    - 172.16.0.0/12
-    - 192.168.0.0/16
+  ## Create a NetworkPolicy Resource
+  enabled: false
 
   egress:
-    blockPrivateNetworks: true
+    imap:
 
+      ## Explicitely configure allowed peers for the IMAP connection.
+      ## See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#networkpolicypeer-v1-networking-k8s-io for all possible options.
+      peers:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+
+    smtp:
+
+      ## Explicitely configure allowed peers for the SMTP connection.
+      ## See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#networkpolicypeer-v1-networking-k8s-io for all possible options.
+      peers:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+
+    managesieve:
+
+      ## Explicitely configure allowed peers for the managesieve connection. Will only be used if managesieve plugin is enabled.
+      ## See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#networkpolicypeer-v1-networking-k8s-io for all possible options.
+      peers:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+
+    ## Add additional, custom egress rules.
+    ## See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#networkpolicyegressrule-v1-networking-k8s-io.
+    additionalRules: []
+    ## Example rule for a zalando postgres cluster called "shared-postgres" in namespace "postgres"
+    #  - to:
+    #    - namespaceSelector:
+    #        matchLabels:
+    #          kubernetes.io/metadata.name: postgres
+    #    - podSelector:
+    #        matchLabels:
+    #          cluster-name: shared-postgres
+    #    ports:
+    #      - port: 5432
+    #        protocol: TCP
+
+
+  ## Additional labels for the NetworkPolicy
   additionalLabels: {}
+
+  ## Additional annotations for the NetworkPolicy
   additionalAnnotations: {}
