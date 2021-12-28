@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.3.2
+
+  * Fixed: For `NetworkPolicy` resource, check `networkPolicy.enabled`, not `pdb.enabled`
+
 ## v1.3.1
 
   * Do not add roundcube-logo.png to helm chart package (smaller package file size)
