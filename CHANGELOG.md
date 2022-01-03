@@ -1,5 +1,9 @@
 # Changelog
 
+## unreleased
+
+  * Upgraded roundcube to v1.5.2
+
 ## v1.4.0
 
   * Improved `NetworkPolicy` configuration
