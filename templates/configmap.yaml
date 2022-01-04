@@ -18,9 +18,10 @@ data:
   roundcube.config.php: |
     <?php
     {{ range $plugin, $settings := .Values.config.plugins }}
+    {{- if $settings -}}{{- if $settings.enabled -}}
     // generated configuration for plugin {{ $plugin }}
-    {{- if $settings -}}{{- if $settings.enabled -}}{{- range $key, $value := $settings.config }}
-    $config['{{ $plugin }}_{{ $key }}'] = {{ if kindIs "string" $value }}{{ $value | quote }}{{ else }}{{ $value }}{{ end }};
+    {{- range $key, $value := $settings.config }}
+    $config['{{ if (not $settings.configOmitNamePrefix) }}{{ $plugin }}_{{ end }}{{ $key }}'] = {{ if kindIs "string" $value }}{{ $value | quote }}{{ else }}{{ $value }}{{ end }};
     {{- end -}}{{- end -}}{{- end }}
     {{ end }}
 
