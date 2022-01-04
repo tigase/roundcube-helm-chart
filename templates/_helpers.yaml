@@ -23,7 +23,7 @@ ssl://
 {{- end -}}
 {{- end -}}
 
-{{- define "roundcube.pluginList" -}}
+{{- define "roundcube.plugins.list" -}}
 {{- $pluginList := list -}}
 {{- range $plugin, $settings := .Values.config.plugins -}}
 {{- if $settings }}
@@ -33,4 +33,25 @@ ssl://
 {{- end -}}
 {{- end -}}
 {{- $pluginList | join "," -}}
+{{- end -}}
+
+{{- define "roundcube.plugins.requirements" -}}
+{{- $pluginList := list -}}
+{{- range $plugin, $settings := .Values.config.plugins -}}
+{{- if $settings }}
+{{- if and $settings.enabled $settings.composerPackage -}}
+{{- $pluginRequirement := printf "%s:%s" $settings.composerPackage.name $settings.composerPackage.version -}}
+{{- $pluginList = append $pluginList $pluginRequirement -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
+{{- $pluginList | join " " -}}
+{{- end -}}
+
+
+{{- define "roundcube.deployment.command" -}}
+{{- if (include "roundcube.plugins.requirements" .) -}}
+(cd /usr/src/roundcubemail && composer require {{ include "roundcube.plugins.requirements" . }}) &&
+{{- end -}}
+/docker-entrypoint.sh apache2-foreground
 {{- end -}}

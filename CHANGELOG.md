@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.5.0
+
+  * Added support to automatically install plugins via composer
+
 ## v1.4.1
 
   * Upgraded roundcube to v1.5.2

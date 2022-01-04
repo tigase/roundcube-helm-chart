@@ -33,6 +33,11 @@ spec:
         - name: roundcubemail
           image: {{ .Values.image }}
           imagePullPolicy: {{ .Values.imagePullPolicy }}
+          command:
+            - /bin/bash
+          args:
+            - "-c"
+            - "{{ include "roundcube.deployment.command" . }}"
           env:
             - name: ROUNDCUBEMAIL_DEFAULT_HOST
               value: "{{ include "roundcube.encryption" .Values.imap.encryption }}{{ required "no IMAP host defined" .Values.imap.host }}"
@@ -60,7 +65,7 @@ spec:
             - name: ROUNDCUBEMAIL_LANGUAGE
               value: "{{ .Values.config.defaultLanguage }}"
             - name: ROUNDCUBEMAIL_PLUGINS
-              value: "{{ include "roundcube.pluginList" . }}"
+              value: "{{ include "roundcube.plugins.list" . }}"
             - name: ROUNDCUBEMAIL_SKIN
               value: "{{ .Values.config.defaultSkin }}"
             - name: ROUNDCUBEMAIL_UPLOAD_MAX_FILESIZE
