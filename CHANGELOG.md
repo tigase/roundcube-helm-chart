@@ -1,6 +1,6 @@
 # Changelog
 
-## unreleased
+## v1.4.1
 
   * Upgraded roundcube to v1.5.2
 
