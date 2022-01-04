@@ -18,6 +18,17 @@ config:
         port: 4190
         useTls: true
 
+    ## Example for a plugin installed via composer
+    contextmenu:
+
+      ## Enabled installing and loading the plugin.
+      enabled: false
+
+      ## composer package information
+      composerPackage:
+        name: "johndoh/contextmenu"
+        version: "3.3"
+
   ## Custom PHP configuration
   customRoundcubeConfig: |
     /*
