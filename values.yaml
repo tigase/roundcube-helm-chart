@@ -18,7 +18,9 @@ config:
         port: 4190
         useTls: true
 
-    ## Example for a plugin installed via composer
+    ## Context menu plugin: Adds context menus with common tasks to various parts of Roundcube
+    ## https://packagist.org/packages/johndoh/contextmenu
+    ## Example for a dynamically installed plugin (via composer)
     contextmenu:
 
       ## Enabled installing and loading the plugin.
