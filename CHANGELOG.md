@@ -1,5 +1,9 @@
 # Changelog
 
+## unreleased
+
+  * Improved plugin configuration rendering: Now allows for complex types such as maps and slices
+
 ## v1.5.0
 
   * Added support to automatically install plugins via composer

@@ -55,3 +55,15 @@ ssl://
 {{- end -}}
 /docker-entrypoint.sh apache2-foreground
 {{- end -}}
+
+
+{{- define "roundcube.helm2php" -}}
+{{- $kind := kindOf . -}}
+{{- if has $kind (list "slice" "map") -}}
+json_decode({{- . | toJson | quote -}})
+{{- else if has $kind (list "string") -}}
+{{- . | quote -}}
+{{- else -}}
+{{- . -}}
+{{- end -}}
+{{- end -}}

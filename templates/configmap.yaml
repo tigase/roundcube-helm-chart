@@ -21,7 +21,7 @@ data:
     {{- if $settings -}}{{- if $settings.enabled -}}
     // generated configuration for plugin {{ $plugin }}
     {{- range $key, $value := $settings.config }}
-    $config['{{ if (not $settings.configOmitNamePrefix) }}{{ $plugin }}_{{ end }}{{ $key }}'] = {{ if kindIs "string" $value }}{{ $value | quote }}{{ else }}{{ $value }}{{ end }};
+    $config['{{ if (not $settings.configOmitNamePrefix) }}{{ $plugin }}_{{ end }}{{ $key }}'] = {{ include "roundcube.helm2php" $value }};
     {{- end -}}{{- end -}}{{- end }}
     {{ end }}
 
