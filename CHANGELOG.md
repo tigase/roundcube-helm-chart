@@ -3,6 +3,7 @@
 ## unreleased
 
   * Improved plugin configuration rendering: Now allows for complex types such as maps and slices
+  * Allow to modify resources configuration
 
 ## v1.5.0
 
