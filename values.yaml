@@ -57,6 +57,7 @@ externalDatabase:
   user: postgres
   password: postgres
 
+resources: {}
 
 ## IMAP settings
 imap:
