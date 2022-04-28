@@ -1,6 +1,6 @@
 # Changelog
 
-## unreleased
+## v1.6.0
 
   * Improved plugin configuration rendering: Now allows for complex types such as maps and slices
   * Allow to modify resources configuration
