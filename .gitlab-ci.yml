@@ -16,7 +16,7 @@ lint:
   script:
     - helm version
     - helm dependency update
-    - helm lint .
+    - helm lint . -f values.lint.yaml
 
 package:
   stage: package
