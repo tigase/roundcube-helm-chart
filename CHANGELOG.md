@@ -4,6 +4,7 @@
 
   * Improved plugin configuration rendering: Now allows for complex types such as maps and slices
   * Allow to modify resources configuration
+  * Updated `bitnami/common` to v1.13.1
 
 ## v1.5.0
 
