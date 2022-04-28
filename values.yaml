@@ -165,21 +165,33 @@ deployment:
 
 ## Additional configuration for the Service resource
 service:
+  ## Service port for HTTP
   port: 80
 
+
+  ## Additional labels for the Service resource
   additionalLabels: {}
+
+  ## Additional annotations for the Service resource
   additionalAnnotations: {}
 
   ipFamilyPolicy: PreferDualStack
 
 
-## Additional configuration for the Ingress resource
+## Ingress resource configuration
 ingress:
+  ## Enable Ingress resource
+  enabled: true
+
   host:
   path: "/"
   class: nginx
 
+
+  ## Additional labels for the Ingress resource
   additionalLabels: {}
+
+  ## Additional annotations for the Ingress resource
   additionalAnnotations: {}
 
 
@@ -189,7 +201,11 @@ pdb:
   minAvailable: 1
   maxUnavailable: ""
 
+
+  ## Additional labels for the PodDisruptionBudget resource
   additionalLabels: {}
+
+  ## Additional annotations for the PodDisruptionBudget resource
   additionalAnnotations: {}
 
 

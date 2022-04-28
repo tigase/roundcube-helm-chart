@@ -183,10 +183,62 @@
             ]
         },
         "service": {
+            "description": "Additional configuration for the Service resource",
+            "type": "object",
+            "properties": {
+                "port": {
+                    "description": "Service port for HTTP",
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 65535
+                },
+                "additionalLabels": {
+                    "description": "Additional labels for the Service resource",
+                    "type": "object"
+                },
+                "additionalAnnotations": {
+                    "description": "Additional annotations for the Service resource",
+                    "type": "object"
+                },
+                "ipFamilyPolicy": {
 
+                }
+            },
+            "required": [
+                "port"
+            ]
         },
         "ingress": {
+            "description": "Ingress resource configuration",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "description": "Enable Ingress resource",
+                    "type": "boolean"
+                },
+                "host": {
 
+                },
+                "path": {
+
+                },
+                "class": {
+
+                },
+                "additionalLabels": {
+                    "description": "Additional labels for the Ingress resource",
+                    "type": "object"
+                },
+                "additionalAnnotations": {
+                    "description": "Additional annotations for the Ingress resource",
+                    "type": "object"
+                }
+            },
+            "required": [
+                "enabled",
+                "host",
+                "path"
+            ]
         },
         "pdb": {
 
