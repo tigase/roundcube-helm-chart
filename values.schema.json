@@ -1,0 +1,213 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "$id": "https://gitlab.com/MatthiasLohr/roundcube-helm-chart/-/raw/main/values.schema.json",
+    "title": "Values",
+    "type": "object",
+    "properties": {
+        "image": {
+            "description": "Roundcube Docker image",
+            "type": "string"
+        },
+        "imagePullPolicy": {
+            "description": "ImagePullPolicy for Roundcube Docker image",
+            "type": "string"
+        },
+        "config": {
+            "description": "Roundcube Core Configuration",
+            "type": "object",
+            "properties": {
+                "desKey": {
+                    "description": "DES Key for session encryption. Will be generated randomly if not set.",
+                    "type": ["null", "string"]
+                },
+                "defaultLanguage": {
+                    "description": "User interface default language",
+                    "type": "string"
+                },
+                "defaultSkin": {
+                    "description": "User interface default skin",
+                    "type": "string"
+                },
+                "uploadMaxFilesize": {
+                    "description": "Maximum allowed upload file size (e.g., for attachmentes)",
+                    "type": "string"
+                },
+                "plugins": {
+                    "description": "Plugin configuration",
+                    "type": "object"
+                },
+                "customRoundcubeConfig": {
+                    "description": "Custom Roundcube configuration parameters",
+                    "type": "string"
+                },
+                "customPhpConfig": {
+                    "description": "Custom configuration for PHP interpreter",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "defaultLanguage",
+                "defaultSkin",
+                "uploadMaxFilesize",
+                "plugins"
+            ]
+        },
+        "externalDatabase": {
+            "description": "Configuration for an external database (not deployed within this chart)",
+            "type": "object"
+        },
+        "imap": {
+            "description": "IMAP settings",
+            "type": "object",
+            "properties": {
+                "host": {
+                    "description": "Hostname or IP address of your IMAP server",
+                    "type": "string"
+                },
+                "port": {
+                    "description": "IMAP port",
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 65535
+                },
+                "encryption": {
+                    "description": "Transport encryption",
+                    "type": "string",
+                    "enum": ["none", "starttls", "ssltls"]
+                },
+                "username": {
+                    "type": ["string", "null"]
+                },
+                "password": {
+                    "type": ["string", "null"]
+                }
+            },
+            "required": [
+                "host"
+            ]
+        },
+        "smtp": {
+            "description": "SMTP settings",
+            "type": "object",
+            "properties": {
+                "host": {
+                    "description": "Hostname or IP address of your SMTP server",
+                    "type": "string"
+                },
+                "port": {
+                    "description": "SMTP port",
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 65535
+                },
+                "encryption": {
+                    "description": "Transport encryption",
+                    "type": "string",
+                    "enum": ["none", "starttls", "ssltls"]
+                },
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "host"
+            ]
+        },
+        "configMap": {
+            "description": "Additional configuration for the ConfigMap resource",
+            "type": "object",
+            "properties": {
+                "additionalLabels": {
+                    "description": "Additional labels for the ConfigMap resource",
+                    "type": "object"
+                },
+                "additionalAnnotations": {
+                    "description": "Additional annotations for the ConfigMap resource",
+                    "type": "object"
+                }
+            }
+        },
+        "secret": {
+            "description": "Additional configuration for the Secret resource",
+            "type": "object",
+            "properties": {
+                "additionalLabels": {
+                    "description": "Additional labels for the Secret resource",
+                    "type": "object"
+                },
+                "additionalAnnotations": {
+                    "description": "Additional annotations for the Secret resource",
+                    "type": "object"
+                }
+            }
+        },
+        "deployment": {
+            "description": "Additional configuration for the Deployment resource",
+            "type": "object",
+            "properties": {
+                "replicas": {
+                    "description": "Number of instances of Roundcube to be started",
+                    "type": "number"
+                },
+                "port": {
+                    "description": "Roundcube container's HTTP port",
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 65535
+                },
+                "additionalLabels": {
+                    "description": "Additional labels for the Deployment resource",
+                    "type": "object"
+                },
+                "additionalAnnotations": {
+                    "description": "Additional annotations for the Deployment resource",
+                    "type": "object"
+                },
+                "podAffinityPreset": {
+
+                },
+                "podAntiAffinityPreset": {
+
+                },
+                "affinity": {
+
+                },
+                "resources": {
+
+                }
+            },
+            "required": [
+                "replicas",
+                "port"
+            ]
+        },
+        "service": {
+
+        },
+        "ingress": {
+
+        },
+        "pdb": {
+
+        },
+        "networkPolicy": {
+
+        }
+    },
+    "required": [
+        "image",
+        "config",
+        "imap",
+        "smtp",
+        "configMap",
+        "secret",
+        "deployment",
+        "service",
+        "ingress",
+        "pdb",
+        "networkPolicy"
+    ]
+}

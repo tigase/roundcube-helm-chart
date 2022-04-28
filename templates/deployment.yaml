@@ -32,7 +32,7 @@ spec:
       containers:
         - name: roundcubemail
           image: {{ .Values.image }}
-          imagePullPolicy: {{ .Values.imagePullPolicy }}
+          imagePullPolicy: {{ .Values.imagePullPolicy | default "IfNotPresent" }}
           command:
             - /bin/bash
           args:

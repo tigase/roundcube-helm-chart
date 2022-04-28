@@ -1,15 +1,31 @@
 
 ## Roundcube Docker image
 image: roundcube/roundcubemail:1.5.2-apache
+
+## ImagePullPolicy for Roundcube Docker image
 imagePullPolicy: IfNotPresent
 
+## Roundcube Core Configuration
 config:
+
+  ## DES Key for session encryption.
+  ## Will be generated randomly if not set.
   desKey:
+
+  ## User interface default language.
   defaultLanguage: en_US
+
+  ## User interface default skin.
   defaultSkin: larry
+
+  ## Maximum allowed upload file size (e.g., for attachmentes).
+  ## Do not forget to adjust ingress accordingly, e.g., by adding the following annotation:
+  ##   nginx.ingress.kubernetes.io/proxy-body-size: 25m
   uploadMaxFilesize: 25M
 
+  ## Plugin configuration
   plugins:
+
     ## https://github.com/roundcube/roundcubemail/blob/master/plugins/managesieve/config.inc.php.dist
     managesieve:
       enabled: false
@@ -31,7 +47,7 @@ config:
         name: "johndoh/contextmenu"
         version: "3.3"
 
-  ## Custom PHP configuration
+  ## Custom Roundcube configuration parameters
   customRoundcubeConfig: |
     /*
      * Custom Roundcube Configuration values
@@ -41,6 +57,7 @@ config:
     // $config['skin_logo'] = "";
     // $config['support_url'] = "https://roundcube.net/";
 
+  ## Custom configuration for PHP interpreter
   customPhpConfig: |
     ## Configure custom memory limit for PHP
     # memory_limit=128M
@@ -59,8 +76,8 @@ externalDatabase:
 
 ## IMAP settings
 imap:
-  ## hostname or IP address of IMAP server
-  host:
+  ## Hostname or IP address of your IMAP server
+  host: imap.gmail.com
 
   ## IMAP port. Default ports depending on encryption setting:
   ##   143 - none, STARTTLS
@@ -82,8 +99,8 @@ imap:
 
 ## SMTP settings
 smtp:
-  ## hostname or IP address of SMTP server
-  host:
+  ## Hostname or IP address of your SMTP server
+  host: smtp.gmail.com
 
   ## SMTP port. Default ports depending on encryption setting:
   ##    25 - none
@@ -104,22 +121,39 @@ smtp:
   password: "%p"
 
 
+## Additional configuration for the ConfigMap resource
 configMap:
+  ## Additional labels for the ConfigMap resource
   additionalLabels: {}
+
+  ## Additional annotations for the ConfigMap resource
   additionalAnnotations: {}
 
 
+## Additional configuration for the Secret resource
 secret:
+  ## Additional labels for the Secret resource
   additionalLabels: {}
+
+  ## Additional annotations for the Secret resource
   additionalAnnotations: {}
 
 
+## Additional configuration for the Deployment resource
 deployment:
+  ## Number of instances of Roundcube to be started
   replicas: 2
+
+  ## Roundcube container's HTTP port
   port: 80
 
+
+  ## Additional labels for the Deployment resource
   additionalLabels: {}
+
+  ## Additional annotations for the Deployment resource
   additionalAnnotations: {}
+
 
   podAffinityPreset: ""
   podAntiAffinityPreset: hard
@@ -135,6 +169,7 @@ deployment:
   #     cpu: "1000m"
 
 
+## Additional configuration for the Service resource
 service:
   port: 80
 
@@ -144,6 +179,7 @@ service:
   ipFamilyPolicy: PreferDualStack
 
 
+## Additional configuration for the Ingress resource
 ingress:
   host:
   path: "/"
@@ -153,6 +189,7 @@ ingress:
   additionalAnnotations: {}
 
 
+## Additional configuration for the PodDisruptionBudget resource
 pdb:
   enabled: true
   minAvailable: 1
@@ -162,6 +199,7 @@ pdb:
   additionalAnnotations: {}
 
 
+## Additional configuration for the NetworkPolicy resource
 ## A NetworkPolicy can prevent unauthorized access to remote hosts on network level.
 ## By default, if enabled, the NetworkPolicy allows to connect to any IP with the IMAP and SMTP ports configured above.
 ## This also applies for the managesieve plugin, if enabled.

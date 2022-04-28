@@ -1,5 +1,10 @@
 # Changelog
 
+## unreleased
+
+  * Added JSON Schema support (see `values.schema.json`)
+  * Improved `values.json` documentation
+
 ## v1.6.0
 
   * Improved plugin configuration rendering: Now allows for complex types such as maps and slices
