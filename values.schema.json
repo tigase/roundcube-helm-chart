@@ -74,16 +74,11 @@
                     "description": "Transport encryption",
                     "type": "string",
                     "enum": ["none", "starttls", "ssltls"]
-                },
-                "username": {
-                    "type": ["string", "null"]
-                },
-                "password": {
-                    "type": ["string", "null"]
                 }
             },
             "required": [
-                "host"
+                "host",
+                "port"
             ]
         },
         "smtp": {
@@ -113,7 +108,10 @@
                 }
             },
             "required": [
-                "host"
+                "host",
+                "port",
+                "username",
+                "password"
             ]
         },
         "configMap": {

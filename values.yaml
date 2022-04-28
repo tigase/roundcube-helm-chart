@@ -90,12 +90,6 @@ imap:
   ##   ssltls   - use SSL/TLS (recommended)
   encryption: ssltls
 
-  ## IMAP username
-  username:
-
-  ## IMAP password
-  password:
-
 
 ## SMTP settings
 smtp:

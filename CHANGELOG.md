@@ -4,6 +4,7 @@
 
   * Added JSON Schema support (see `values.schema.json`)
   * Improved `values.json` documentation
+  * Removed unused/unsupported `imap.username` and `imap.password` settings
 
 ## v1.6.0
 
