@@ -195,9 +195,11 @@ ingress:
   additionalAnnotations: {}
 
 
-## Additional configuration for the PodDisruptionBudget resource
+## PodDisruptionBudget configuration
 pdb:
+  ## Enable PodDisruptionBudget
   enabled: true
+
   minAvailable: 1
   maxUnavailable: ""
 
@@ -209,17 +211,19 @@ pdb:
   additionalAnnotations: {}
 
 
-## Additional configuration for the NetworkPolicy resource
+## NetworkPolicy configuration
 ## A NetworkPolicy can prevent unauthorized access to remote hosts on network level.
 ## By default, if enabled, the NetworkPolicy allows to connect to any IP with the IMAP and SMTP ports configured above.
 ## This also applies for the managesieve plugin, if enabled.
 ## More information on network policies: https://kubernetes.io/docs/concepts/services-networking/network-policies/
 networkPolicy:
 
-  ## Create a NetworkPolicy Resource
+  ## Create a NetworkPolicy resource
   enabled: false
 
+  ## Egress policies for Roundcube environment
   egress:
+    ## IMAP related Egress policies
     imap:
 
       ## Explicitely configure allowed peers for the IMAP connection.
@@ -228,6 +232,8 @@ networkPolicy:
         - ipBlock:
             cidr: 0.0.0.0/0
 
+
+    ## SMTP related Egress policies
     smtp:
 
       ## Explicitely configure allowed peers for the SMTP connection.
@@ -236,6 +242,8 @@ networkPolicy:
         - ipBlock:
             cidr: 0.0.0.0/0
 
+
+    ## managesieve related Egress policies
     managesieve:
 
       ## Explicitely configure allowed peers for the managesieve connection. Will only be used if managesieve plugin is enabled.
@@ -243,6 +251,7 @@ networkPolicy:
       peers:
         - ipBlock:
             cidr: 0.0.0.0/0
+
 
     ## Add additional, custom egress rules.
     ## See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#networkpolicyegressrule-v1-networking-k8s-io.

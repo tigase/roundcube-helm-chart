@@ -241,10 +241,102 @@
             ]
         },
         "pdb": {
+            "description": "PodDisruptionBudget configuration",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "description": "Enable PodDisruptionBudget",
+                    "type": "boolean"
+                },
+                "minAvailable": {
 
+                },
+                "maxUnavailable": {
+
+                },
+                "additionalLabels": {
+                    "description": "Additional labels for the PodDisruptionBudget resource",
+                    "type": "object"
+                },
+                "additionalAnnotations": {
+                    "description": "Additional annotations for the PodDisruptionBudget resource",
+                    "type": "object"
+                }
+            },
+            "required": [
+                "enabled"
+            ]
         },
         "networkPolicy": {
+            "description": "NetworkPolicy configuration",
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "description": "Create a NetworkPolicy resource",
+                    "type": "boolean"
+                },
+                "egress": {
+                    "description": "Egress policies for Roundcube environment",
+                    "type": "object",
+                    "properties": {
+                        "imap": {
+                            "description": "IMAP related Egress policies",
+                            "type": "object",
+                            "properties": {
+                                "peers": {
 
+                                }
+                            },
+                            "required": [
+                                "peers"
+                            ]
+                        },
+                        "smtp": {
+                            "description": "SMTP related Egress policies",
+                            "type": "object",
+                            "properties": {
+                                "peers": {
+
+                                }
+                            },
+                            "required": [
+                                "peers"
+                            ]
+                        },
+                        "managesieve": {
+                            "description": "anagesieve related Egress policies",
+                            "type": "object",
+                            "properties": {
+                                "peers": {
+
+                                }
+                            },
+                            "required": [
+                                "peers"
+                            ]
+                        },
+                        "additionalRules": {
+                            "description": "Add additional, custom egress rules",
+                            "type": "array"
+                        }
+                    },
+                    "required": [
+                        "imap",
+                        "smtp"
+                    ]
+                },
+                "additionalLabels": {
+                    "description": "Additional labels for the NetworkPolicy resource",
+                    "type": "object"
+                },
+                "additionalAnnotations": {
+                    "description": "Additional annotations for the NetworkPolicy resource",
+                    "type": "object"
+                }
+            },
+            "required": [
+                "enabled"
+            ]
         }
     },
     "required": [

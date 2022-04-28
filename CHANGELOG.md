@@ -2,7 +2,7 @@
 
 ## v1.7.0
 
-  * Added JSON Schema support (see `values.schema.json`)
+  * Added JSON Schema support (see `values.schema.json`) (#3)
   * Improved `values.json` documentation
   * Allow enabling/disabling Ingress resource
   * Removed unused/unsupported `imap.username` and `imap.password` settings
