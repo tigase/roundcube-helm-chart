@@ -175,6 +175,7 @@ service:
   ## Additional annotations for the Service resource
   additionalAnnotations: {}
 
+  ## https://kubernetes.io/docs/concepts/services-networking/dual-stack/
   ipFamilyPolicy: PreferDualStack
 
 
