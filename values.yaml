@@ -1,6 +1,6 @@
 
 ## Roundcube Docker image
-image: roundcube/roundcubemail:1.5.2-apache
+image: roundcube/roundcubemail:1.5.3-apache
 
 ## ImagePullPolicy for Roundcube Docker image
 imagePullPolicy: IfNotPresent

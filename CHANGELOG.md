@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.7.1
+
+* Upgraded roundcube to v1.5.3
+
 ## v1.7.0
 
   * Added JSON Schema support (see `values.schema.json`) (#3)
