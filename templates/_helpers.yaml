@@ -58,7 +58,7 @@ ssl://
 {{- if (include "roundcube.plugins.requirements" .) -}}
 (cd /usr/src/roundcubemail && composer require {{ include "roundcube.plugins.requirements" . }}) &&
 {{- end -}}
-/docker-entrypoint.sh apache2-foreground
+/docker-entrypoint.sh php-fpm
 {{- end -}}
 
 

@@ -1,10 +1,11 @@
 # Changelog
 
-## v1.7.2
+## v1.8.0
 
 * **Upgraded roundcube to v1.6.0, see https://github.com/roundcube/roundcubemail/releases/tag/1.6.0 for breaking changes for custom configuration in Roundcube**
 * **Set default theme to `elastic`**
 * **Removed option `config.plugins.managesieve.config.port`, added port portion to `config.plugins.managesieve.config.host`**
+* Changed from apache to nginx with php-fpm
 * Updated `bitnami/common` to v1.16.1
 
 ## v1.7.1

@@ -26,4 +26,36 @@ data:
     {{ end }}
 
     // custom roundcube config
-    {{- .Values.config.customRoundcubeConfig | default "" | nindent 4 -}}
+    {{- .Values.config.customRoundcubeConfig | default "" | nindent 4 }}
+  nginx.conf: |
+    events {
+
+    }
+
+    http {
+      include       /etc/nginx/mime.types;
+      default_type  application/octet-stream;
+
+      keepalive_timeout  65;
+
+      server {
+        listen {{ .Values.deployment.port }} default_server;
+        listen [::]:{{ .Values.deployment.port }} default_server;
+
+        root /var/www/html;
+        server_name _;
+
+        index index.php;
+
+        location / {
+          try_files $uri $uri/ =404;
+        }
+
+        location ~ \.php$ {
+          include fastcgi_params;
+          fastcgi_param REQUEST_METHOD $request_method;
+          fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+          fastcgi_pass localhost:9000;
+        }
+      }
+    }
