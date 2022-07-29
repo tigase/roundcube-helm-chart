@@ -1,6 +1,6 @@
 
 ## Roundcube Docker image
-image: roundcube/roundcubemail:1.5.3-apache
+image: roundcube/roundcubemail:1.6.0-fpm-alpine
 
 ## ImagePullPolicy for Roundcube Docker image
 imagePullPolicy: IfNotPresent
@@ -16,7 +16,7 @@ config:
   defaultLanguage: en_US
 
   ## User interface default skin.
-  defaultSkin: larry
+  defaultSkin: elastic
 
   ## Maximum allowed upload file size (e.g., for attachmentes).
   ## Do not forget to adjust ingress accordingly, e.g., by adding the following annotation:
@@ -30,8 +30,7 @@ config:
     managesieve:
       enabled: false
       config:
-        host: "%h"
-        port: 4190
+        host: "%h:4190"
         useTls: true
 
     ## Context menu plugin: Adds context menus with common tasks to various parts of Roundcube
