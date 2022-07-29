@@ -40,7 +40,12 @@ ssl://
 {{- range $plugin, $settings := .Values.config.plugins -}}
 {{- if $settings }}
 {{- if and $settings.enabled $settings.composerPackage -}}
-{{- $pluginRequirement := printf "%s:%s" $settings.composerPackage.name $settings.composerPackage.version -}}
+{{- $pluginRequirement := "" -}}
+{{- if $settings.composerPackage.version -}}
+{{- $pluginRequirement = printf "%s:%s" $settings.composerPackage.name $settings.composerPackage.version -}}
+{{- else -}}
+{{- $pluginRequirement = $settings.composerPackage.name -}}
+{{- end -}}
 {{- $pluginList = append $pluginList $pluginRequirement -}}
 {{- end -}}
 {{- end -}}
