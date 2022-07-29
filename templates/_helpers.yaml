@@ -35,6 +35,29 @@ ssl://
 {{- $pluginList | join "," -}}
 {{- end -}}
 
+{{- define "roundcube.skins.requirements" -}}
+  {{- $skinList := list -}}
+  {{- range $skin, $settings := .Values.config.skins -}}
+    {{- if $settings -}}
+      {{- if $settings.enabled -}}
+        {{- $composerPackage := printf "roundcube/%s" $skin -}}
+        {{- $composerVersion := $.Chart.AppVersion -}}
+        {{- if $settings.composerPackage -}}
+          {{- if $settings.composerPackage.name -}}
+            {{- $composerPackage = $settings.composerPackage.name -}}
+          {{- end -}}
+          {{- if $settings.composerPackage.version -}}
+            {{- $composerVersion = $settings.composerPackage.version -}}
+          {{- end -}}
+        {{- end -}}
+        {{- $skinRequirement := printf "%s:%s" $composerPackage $composerVersion -}}
+        {{- $skinList = append $skinList $skinRequirement -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $skinList | join " " -}}
+{{- end -}}
+
 {{- define "roundcube.plugins.requirements" -}}
 {{- $pluginList := list -}}
 {{- range $plugin, $settings := .Values.config.plugins -}}
@@ -55,8 +78,8 @@ ssl://
 
 
 {{- define "roundcube.deployment.command" -}}
-{{- if (include "roundcube.plugins.requirements" .) -}}
-(cd /usr/src/roundcubemail && composer require {{ include "roundcube.plugins.requirements" . }}) &&
+{{- if (or (include "roundcube.plugins.requirements" .) (include "roundcube.skins.requirements" .)) -}}
+(cd /usr/src/roundcubemail && composer require {{ include "roundcube.plugins.requirements" . }} {{ include "roundcube.skins.requirements" . }}) &&
 {{- end -}}
 /docker-entrypoint.sh php-fpm
 {{- end -}}

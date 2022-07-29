@@ -32,6 +32,10 @@
                     "description": "Maximum allowed upload file size (e.g., for attachmentes)",
                     "type": "string"
                 },
+                "skins": {
+                    "description": "Skin configuration",
+                    "type": "object"
+                },
                 "plugins": {
                     "description": "Plugin configuration",
                     "type": "object"

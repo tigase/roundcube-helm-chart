@@ -15,13 +15,23 @@ config:
   ## User interface default language.
   defaultLanguage: en_US
 
+  ## Allow for custom skin installation
+  skins:
+    classic:
+      enabled: false
+
+    larry:
+      enabled: false
+
+    ## custom skin example
+    #custom:
+    #  enabled: true
+    #  composerPackage:
+    #    name: custom (defaults to roundcube/{{ skin name }})
+    #    version: 1.0 (defaults to rounddube version)
+
   ## User interface default skin.
   defaultSkin: elastic
-
-  ## Maximum allowed upload file size (e.g., for attachmentes).
-  ## Do not forget to adjust ingress accordingly, e.g., by adding the following annotation:
-  ##   nginx.ingress.kubernetes.io/proxy-body-size: 25m
-  uploadMaxFilesize: 25M
 
   ## Plugin configuration
   plugins:
@@ -45,6 +55,11 @@ config:
       composerPackage:
         name: "johndoh/contextmenu"
         version: "3.3"
+
+  ## Maximum allowed upload file size (e.g., for attachmentes).
+  ## Do not forget to adjust ingress accordingly, e.g., by adding the following annotation:
+  ##   nginx.ingress.kubernetes.io/proxy-body-size: 25m
+  uploadMaxFilesize: 25M
 
   ## Custom Roundcube configuration parameters
   customRoundcubeConfig: |
