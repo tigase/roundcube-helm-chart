@@ -1,5 +1,9 @@
 # Changelog
 
+## unreleased
+
+* Updated `bitnami/common` to v1.16.1
+
 ## v1.7.1
 
 * Upgraded roundcube to v1.5.3
