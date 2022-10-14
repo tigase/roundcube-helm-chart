@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.8.1
+
+  * Added client_max_body_size to nginx sidecar #5 @firemdkfighter
+
 ## v1.8.0
 
 * **Upgraded roundcube to v1.6.0, see https://github.com/roundcube/roundcubemail/releases/tag/1.6.0 for breaking changes for custom configuration in Roundcube**

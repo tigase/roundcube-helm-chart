@@ -37,6 +37,7 @@ data:
       default_type  application/octet-stream;
 
       keepalive_timeout  65;
+      client_max_body_size {{ .Values.config.uploadMaxFilesize }};
 
       server {
         listen {{ .Values.deployment.port }} default_server;
