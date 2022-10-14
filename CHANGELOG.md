@@ -2,7 +2,8 @@
 
 ## v1.8.1
 
-  * Added client_max_body_size to nginx sidecar #5 @firemdkfighter
+  * Added `client_max_body_size` to nginx sidecar (#5, fixed by @firemdkfighter)
+  * Upgraded `bitnami/common` to v2.0.3
 
 ## v1.8.0
 
