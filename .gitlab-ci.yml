@@ -46,7 +46,7 @@ upload to repo:
     - lftp -e "open $FTP_HOST; user $FTP_USERNAME $FTP_PASSWORD; put -O "${chartname}/" "${chartname}-${CI_COMMIT_TAG:1}.tgz"; bye"
 
 create release:
-  image: registry.gitlab.com/gitlab-org/release-cli:v0.10.0
+  image: registry.gitlab.com/gitlab-org/release-cli:v0.15.0
   stage: release
   rules:
     - if: '$CI_COMMIT_TAG != null'
@@ -55,7 +55,5 @@ create release:
     - >
       release-cli create --name $CI_COMMIT_TAG --description "# Changelog$(cat CHANGELOG.md | awk '/## '$CI_COMMIT_TAG'/{flag=1;next}/##/{flag=0}flag')"
       --tag-name $CI_COMMIT_TAG --ref $CI_COMMIT_SHA
-      --assets-links-name "${chartname}-${CI_COMMIT_TAG:1}.tgz"
-      --assets-links-url "https://helm-charts.mlohr.com/${chartname}/${chartname}-${CI_COMMIT_TAG:1}.tgz"
-      --assets-links-name "${chartname}-${CI_COMMIT_TAG:1}.tgz.prov"
-      --assets-links-url "https://helm-charts.mlohr.com/${chartname}/${chartname}-${CI_COMMIT_TAG:1}.tgz.prov"
+      --assets-link "{\"name\": \"${chartname}-${CI_COMMIT_TAG:1}.tgz\", \"url\": \"https://helm-charts.mlohr.com/${chartname}/${chartname}-${CI_COMMIT_TAG:1}.tgz\", \"link_type\": \"package\"}"
+      --assets-link "{\"name\": \"${chartname}-${CI_COMMIT_TAG:1}.tgz.prov\", \"url\": \"https://helm-charts.mlohr.com/${chartname}/${chartname}-${CI_COMMIT_TAG:1}.tgz.prov\", \"link_type\": \"other\"}"
