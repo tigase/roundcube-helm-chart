@@ -229,6 +229,10 @@
                 "class": {
 
                 },
+                "ingressClassName": {
+                    "description": "Name for the used ingress class",
+                    "type": ["string", "null"]
+                },
                 "additionalLabels": {
                     "description": "Additional labels for the Ingress resource",
                     "type": "object"

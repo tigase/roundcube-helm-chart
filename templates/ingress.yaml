@@ -11,7 +11,9 @@ metadata:
     {{- end }}
   annotations:
     kubernetes.io/tls-acme: "true"
+    {{- if .Values.ingress.class }}
     kubernetes.io/ingress.class: {{ .Values.ingress.class }}
+    {{- end }}
     nginx.ingress.kubernetes.io/affinity: "cookie"
     nginx.ingress.kubernetes.io/affinity-mode: "persistent"
     nginx.ingress.kubernetes.io/session-cookie-name: "roundcube_sessaffinity"
@@ -20,6 +22,9 @@ metadata:
     {{- include "common.tplvalues.render" ( dict "value" .Values.ingress.additionalAnnotations "context" $) | nindent 4 }}
     {{- end }}
 spec:
+  {{- if .Values.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  {{- end }}
   rules:
     - host: {{ required "No ingress host defined" .Values.ingress.host }}
       http:

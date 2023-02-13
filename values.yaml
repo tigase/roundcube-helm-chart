@@ -198,6 +198,7 @@ ingress:
   ## Enable Ingress resource
   enabled: true
 
+  ingressClassName:
   host:
   path: "/"
   class: nginx
