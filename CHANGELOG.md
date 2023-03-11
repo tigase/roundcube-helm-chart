@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.9.0
+
+  * Configurable deployment strategy (#!5, fixed by @dploeger)
+
 ## v1.8.1
 
   * Added `client_max_body_size` to nginx sidecar (#5, fixed by @firemdkfighter)
