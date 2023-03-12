@@ -1,11 +1,13 @@
 # Changelog
 
-## v1.8.2
-  * Added support for `ingress.ingressClassName`
+## v1.9.0
+
+  * Added support for `ingress.ingressClassName` (!4 by @stefanandres)
+  * Configurable deployment strategy (!5 by @dploeger)
 
 ## v1.8.1
 
-  * Added `client_max_body_size` to nginx sidecar (#5, fixed by @firemdkfighter)
+  * Added `client_max_body_size` to nginx sidecar (#5 by @firemdkfighter)
   * Upgraded `bitnami/common` to v2.0.3
 
 ## v1.8.0

@@ -152,6 +152,10 @@ deployment:
   ## Number of instances of Roundcube to be started
   replicas: 2
 
+  ## Deployment strategy (see https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/deployment-v1/#DeploymentSpec)
+  strategy:
+    type: RollingUpdate
+
   ## Roundcube container's HTTP port
   port: 80
 

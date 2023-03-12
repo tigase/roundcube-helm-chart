@@ -154,6 +154,10 @@
                     "description": "Number of instances of Roundcube to be started",
                     "type": "number"
                 },
+                "strategy": {
+                    "description": "Deployment strategy to use",
+                    "type": "object"
+                },
                 "port": {
                     "description": "Roundcube container's HTTP port",
                     "type": "number",
