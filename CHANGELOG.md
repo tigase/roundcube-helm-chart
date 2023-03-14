@@ -2,6 +2,7 @@
 
 ## v1.9.0
 
+  * Upgraded roundcube to v1.6.1
   * Added support for `ingress.ingressClassName` (!4 by @stefanandres)
   * Configurable deployment strategy (!5 by @dploeger)
   * Use associative arrays instead of objects for complex plugin options (!6 by @dploeger)
@@ -14,16 +15,16 @@
 
 ## v1.8.0
 
-* **Upgraded roundcube to v1.6.0, see https://github.com/roundcube/roundcubemail/releases/tag/1.6.0 for breaking changes for custom configuration in Roundcube**
-* **Set default theme to `elastic`**
-* Allow to install custom skins (see `config.skins` parameter in `values.yaml`)
-* **Removed option `config.plugins.managesieve.config.port`, added port portion to `config.plugins.managesieve.config.host`**
-* Changed from apache to nginx with php-fpm
-* Updated `bitnami/common` to v1.16.1
+  * **Upgraded roundcube to v1.6.0, see https://github.com/roundcube/roundcubemail/releases/tag/1.6.0 for breaking changes for custom configuration in Roundcube**
+  * **Set default theme to `elastic`**
+  * Allow to install custom skins (see `config.skins` parameter in `values.yaml`)
+  * **Removed option `config.plugins.managesieve.config.port`, added port portion to `config.plugins.managesieve.config.host`**
+  * Changed from apache to nginx with php-fpm
+  * Updated `bitnami/common` to v1.16.1
 
 ## v1.7.1
 
-* Upgraded roundcube to v1.5.3
+  * Upgraded roundcube to v1.5.3
 
 ## v1.7.0
 

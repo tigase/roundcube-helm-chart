@@ -1,6 +1,6 @@
 
 ## Roundcube Docker image
-image: roundcube/roundcubemail:1.6.0-fpm-alpine
+image: roundcube/roundcubemail:{{ .Chart.AppVersion }}-fpm-alpine
 
 ## ImagePullPolicy for Roundcube Docker image
 imagePullPolicy: IfNotPresent
@@ -19,9 +19,15 @@ config:
   skins:
     classic:
       enabled: false
+      composerPackage:
+        name: roundcube/classic
+        version: 1.6.0
 
     larry:
       enabled: false
+      composerPackage:
+        name: roundcube/larry
+        version: 1.6.0
 
     ## custom skin example
     #custom:
