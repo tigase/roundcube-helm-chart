@@ -103,7 +103,7 @@ spec:
           resources: {{ .Values.deployment.resources | toYaml | nindent 12 }}
           {{ end }}
         - name: nginx
-          image: nginx:1.23.1
+          image: nginx:1.23.3
           volumeMounts:
             - name: shared-files
               mountPath: /var/www/html
