@@ -88,7 +88,7 @@ ssl://
 {{- define "roundcube.helm2php" -}}
 {{- $kind := kindOf . -}}
 {{- if has $kind (list "slice" "map") -}}
-json_decode({{- . | toJson | quote -}})
+json_decode({{- . | toJson | quote -}}, true)
 {{- else if has $kind (list "string") -}}
 {{- . | quote -}}
 {{- else -}}

@@ -4,6 +4,7 @@
 
   * Added support for `ingress.ingressClassName` (!4 by @stefanandres)
   * Configurable deployment strategy (!5 by @dploeger)
+  * Use associative arrays instead of objects for complex plugin options (!6 by @dploeger)
   * Upgraded `bitnami/common` to v2.2.4
 
 ## v1.8.1
