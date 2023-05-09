@@ -5,6 +5,7 @@
   * Added support for `ingress.ingressClassName` (!4 by @stefanandres)
   * Configurable deployment strategy (!5 by @dploeger)
   * Use associative arrays instead of objects for complex plugin options (!6 by @dploeger)
+  * Set `COMPOSER_ALLOW_SUPERUSER` to `1` to allow plugin installation via composer (!7 by @teknofile)
   * Upgraded `bitnami/common` to v2.2.4
   * upgraded nginx image to v1.23.3
 

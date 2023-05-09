@@ -90,6 +90,8 @@ spec:
                   key: dbPassword
             - name: ROUNDCUBEMAIL_DB_NAME
               value: "{{ .Values.externalDatabase.name }}"
+            - name: COMPOSER_ALLOW_SUPERUSER
+              value: "1"
           volumeMounts:
             - name: config
               mountPath: /usr/local/etc/php/conf.d/zzz-custom.ini
