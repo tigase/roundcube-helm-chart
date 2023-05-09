@@ -2,7 +2,6 @@
 
 ## v1.9.0
 
-  * Upgraded roundcube to v1.6.1
   * Added support for `ingress.ingressClassName` (!4 by @stefanandres)
   * Configurable deployment strategy (!5 by @dploeger)
   * Use associative arrays instead of objects for complex plugin options (!6 by @dploeger)
