@@ -39,5 +39,9 @@ spec:
   tls:
     - hosts:
         - {{ required "No ingress host defined" .Values.ingress.host }}
+      {{- if .Values.ingress.secretName }}
+      secretName: {{ .Values.ingress.secretName }}
+      {{- else }}
       secretName: {{ include "common.names.fullname" . }}-tls
+      {{- end }}
 {{- end -}}
