@@ -212,7 +212,8 @@ ingress:
   host:
   path: "/"
   class: nginx
-
+  
+  secretName:
 
   ## Additional labels for the Ingress resource
   additionalLabels: {}
