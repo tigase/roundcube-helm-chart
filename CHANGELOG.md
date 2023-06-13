@@ -3,6 +3,7 @@
 ## v1.10.0
 
   * Added support for `ingress.tls.secretName` to be able to refer to an existing secret (!8 by @kaktus42)
+  * Upgraded `bitnami/common` to v2.4.0
 
 ## v1.9.0
 
