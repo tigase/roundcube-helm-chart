@@ -213,7 +213,11 @@ ingress:
   path: "/"
   class: nginx
   
-  secretName:
+  ## TLS settings
+  tls:
+
+    ## Configure secret name, e.g., to re-use an existing secret
+    secretName:
 
   ## Additional labels for the Ingress resource
   additionalLabels: {}

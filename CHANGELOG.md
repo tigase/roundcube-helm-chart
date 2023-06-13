@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.10.0
+
+  * Added support for `ingress.tls.secretName` to be able to refer to an existing secret (!8 by @kaktus42)
+
 ## v1.9.0
 
   * Added support for `ingress.ingressClassName` (!4 by @stefanandres)
