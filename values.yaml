@@ -82,6 +82,7 @@ config:
     ## Configure custom memory limit for PHP
     # memory_limit=128M
 
+initContainers: []
 
 ## Configuration for an external database (not deployed within this chart)
 ## When working with a NetworkPolicy, add an egress rule to networkPolicy.egress.additionalRules to allow access to the database.

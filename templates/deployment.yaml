@@ -31,6 +31,10 @@ spec:
       annotations:
         roundcube/config-checksum: {{ $configChecksum }}
     spec:
+      initContainers:
+        {{- with .Values.initContainers }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
       containers:
         - name: roundcubemail
           image: {{ tpl .Values.image . }}
