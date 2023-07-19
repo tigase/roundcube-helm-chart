@@ -1,3 +1,5 @@
+## Temporary fork of https://gitlab.com/MatthiasLohr/roundcube-helm-chart until it get's PR merged
+
 # Roundcube Helm Chart
 
 This Helm chart allows for an easy install of [Roundcube webmail client](https://roundcube.net/) to your Kubernetes cluster.
